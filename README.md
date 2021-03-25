@@ -52,6 +52,7 @@ File 3 description: [Part3_DataModeling](https://github.com/franciscoj-londonoh/
 
 After feature engineering and data analysis, the next step is to model the data to understand if the ECG waveform together with basic demographic information could be used as a biometric identification by training a clasification model.
 
+## Question 3: Which model could perform the task using the ECG signal for biometric identification?
 This is a classification task with a reduced number of samples (2832 rows), thus a linear SVM could be suitable.
 The proposed model shows a low general performance. It could be due to the inadequacy of the model itself or could be due to the several issues that the features appear to introduce (bias, redundancy, inaccuracies, ...). Accordingly, the first step will be to include additional features, saved in Part 1: a portion of the raw (original) ECG signal. In this way, it can be assessed the impact of the features on the model's performance.
 
@@ -67,6 +68,7 @@ Even if age seems to have a great impact in all the classification pairs, and ge
 
 The raw ECG waveform used as features for the selected linear SVM classification model delivers better accuracy than demographic information of the subjects and point-based features extracted from the ECG waveform.
 ![Feature_impact](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_TrainImpact.png)
+
 
 Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/ECG_Biometric_functions.py).
 This .py file contains functions that are called by Part 3 of the project (described above) to perform data modelling. The file includes the functions: 
