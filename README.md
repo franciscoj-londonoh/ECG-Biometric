@@ -16,27 +16,27 @@ The development of this project involved:
 * Assess and compare the performance of each trained model through proposed metrics
 
 
-[Data preparation](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/Part1_DataPreparation.ipynb)
+[Data preparation](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part1_DataPreparation.ipynb)
 
 In this part of the project, the ECG signals are processed, and parameters are extracted, including basic demographic data and extracted features from the raw signal. Additionally, partial raw signals are saved for later use. Selected features are organized in a DataFrame, and general information is obtained.
 
-Exploratory Data Analysis [(EDA)](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/Part2_EDA.ipynb)
+Exploratory Data Analysis [(EDA)](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part2_EDA.ipynb)
 
 This second part of the project shows the age and gender distributions of the sample population, and explores potential correlations between the selected features to identify redundancy.
 
-![EDA_heatmap](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/Images/HeatMap_2.png)
+![EDA_heatmap](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/HeatMap_2.png)
 
 
-## Data Modeling: [Data Modeling](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/Part3_DataModeling.ipynb) - ECG classification algorithm
+## Data Modeling: [Data Modeling](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part3_DataModeling.ipynbb) - ECG classification algorithm
 
 Finally, the dataframe is curated as input for the proposed SVM linear model, which is trained, tested and performance metrics obtained. Then, additional features are added, and the procedure is repeated to compare the performance of the models trained with different features. The number of features is evaluated to optimize the process.  
 
-![Feature_weights](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/Images/Feature_weigth.png)
+![Feature_weights](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_weigth.png)
 
 ## Evaluation Results:
 ![Feature_impact](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_TrainImpact.png)
 
-Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-based-Biometric-Identification/blob/main/ECG_Biometric_functions.py).
+Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/ECG_Biometric_functions.py).
 This .py file contains functions that are called by Part 3 of the project (described above) to perform data modelling. The file includes the functions: 
 - svmlinear_model
 - model_performace
