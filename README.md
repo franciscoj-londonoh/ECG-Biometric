@@ -1,5 +1,6 @@
 # ECG Biometric Identification
 
+## Question 1: Is the ECG signal adequate as a biometric identification?
 ## Business and Data Understanding
 This project was proposed following a consideration raised by Lugovaya [1] about the potential use of the electrocardiogram (ECG) as a biometric human identification method.
 The project analyzes feature selection and parameter extraction from an ECG database, and proposed a model to identify the subjects based on these features, delivering insights on the impact of feature engineering and the potential use of ECG as a biometric human identification signal. 
@@ -16,24 +17,55 @@ The development of this project involved:
 * Assess and compare the performance of each trained model through proposed metrics
 
 
-[Data preparation](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part1_DataPreparation.ipynb)
+File 1 description: [Part1_DataPreparation](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part1_DataPreparation.ipynb)
 
 In this part of the project, the ECG signals are processed, and parameters are extracted, including basic demographic data and extracted features from the raw signal. Additionally, partial raw signals are saved for later use. Selected features are organized in a DataFrame, and general information is obtained.
 
-Exploratory Data Analysis [(EDA)](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part2_EDA.ipynb)
+After downloading the selected database of ECG signals, a preprocessing stage was put in place to obtain an adequate organization of the data, extracting general information of each subject and specific characteristics of each ECG waveform to create a DataFrame with several features for further processing.
+
+The pre-processing of the ECG signal database allows to construct a DataFrame with selected information regarding basic demographic data and calculated ECG features. Additionally, a portion of the raw (original) ECG signal was also saved for further analysis. Feature engineering could entail a more complex and robust processing of the data but the proposed features could demonstrate if the trained model could have a good performance even with calculation pitfalls or the raw data.
+
+File 2 description: [Part2_EDA](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part2_EDA.ipynb)
+
+An exploratory data analysis (EDA) shows the general demographic distribution of the ECG database. Age and gender of participants can highlight potential bias of the data to take into account when using the trained model. Correlations and associations between selected features are also examine to identify possible redundant information.
 
 This second part of the project shows the age and gender distributions of the sample population, and explores potential correlations between the selected features to identify redundancy.
+
+## Question 2: How can the ECG signal be used for identified a subject? Which features of the ECG signal are better for the purpose of biometric identification?
+
+### Question 2.1: Feature distributions: Is there a bias in gender or/and age?
+Even if there is a slighlty higher amount of males in the sample population, the gender distributions is not indicate of a strong bias. Instead, younger subjects (around the age of 20) composed most of the sample population, thus making an indication on how this can impact the performance of the model in a different population. Moreover, if we take into account the possibility of the impact of aging in the ECG waveform, then is not a minor issue to consider.
+
+Even if there is a slighlty higher amount of males in the sample population, the gender distributions is not indicate of a strong bias. Instead, younger subjects (around the age of 20) composed most of the sample population, thus making an indication on how this can impact the performance of the model in a different population. Moreover, if we take into account the possibility of the impact of aging in the ECG waveform, then is not a minor issue to consider.
+
+### Question 2.2: Information redundancy: Is there a strong correlation among the selected features?
+The heatmap shows only a strong (and clearly expected) correlation between standar deviation and variance, and a less strong one between median and mean, variance and standar deviation. This could indicate that there is redundancy among the calculated features, and thus, the model could suffer for the lack of additional trends, patterns or general information to perform classification.
+
+The sample population shows a more or less balance gender distribution but a bias towards younger subjects, which could impact the model's performance in a different database. It seems that calculated features could contain redundant information, presenting an additional difficulty for the model to recognize a broader set of subjects.
 
 ![EDA_heatmap](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/HeatMap_2.png)
 
 
-## Data Modeling: [Data Modeling](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part3_DataModeling.ipynbb) - ECG classification algorithm
+## Data Modeling - ECG classification algorithm
+
+File 3 description: [Part3_DataModeling](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Part3_DataModeling.ipynbb)
+
+After feature engineering and data analysis, the next step is to model the data to understand if the ECG waveform together with basic demographic information could be used as a biometric identification by training a clasification model.
+
+This is a classification task with a reduced number of samples (2832 rows), thus a linear SVM could be suitable.
+The proposed model shows a low general performance. It could be due to the inadequacy of the model itself or could be due to the several issues that the features appear to introduce (bias, redundancy, inaccuracies, ...). Accordingly, the first step will be to include additional features, saved in Part 1: a portion of the raw (original) ECG signal. In this way, it can be assessed the impact of the features on the model's performance.
 
 Finally, the dataframe is curated as input for the proposed SVM linear model, which is trained, tested and performance metrics obtained. Then, additional features are added, and the procedure is repeated to compare the performance of the models trained with different features. The number of features is evaluated to optimize the process.  
 
+The performance of the model shows a meaningful improvement, proving the critical role features play in the implementation of a model as a classification strategy. The use of ECG raw data as DataFrame features could also indicate the particular information deliver by biological waveforms and their potential use as biometric prints, even without a complex feature engineering. Nevertheless, the amount of used features is high, thus processing time and computing resources are increased. Moreover, zero values could have a negative impact in the final performance of the model. Following, an implementation delivers insights on the most suitable number of features to deliver a model with a high performance.
+
 ![Feature_weights](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_weigth.png)
 
-## Evaluation Results:
+## Evaluation Results
+
+Even if age seems to have a great impact in all the classification pairs, and gender in some of them, the rest of the features are not consistent. Combining this information with the previous model performance that only used demographic features and other selected features, demographic information alone can not achieve this performance and thus the waveform has a substantial role in the performance of this model, achieving a way higher accuracy and performance in general.
+
+The raw ECG waveform used as features for the selected linear SVM classification model delivers better accuracy than demographic information of the subjects and point-based features extracted from the ECG waveform.
 ![Feature_impact](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_TrainImpact.png)
 
 Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/ECG_Biometric_functions.py).
@@ -42,6 +74,9 @@ This .py file contains functions that are called by Part 3 of the project (descr
 - model_performace
 - coef_weights
 - find_optimal_model
+
+## Conclusions
+Results show that the raw ECG waveform could be used as a biometric human identification measure for this specific database. It remains the importance of a generalization of this method to a broader sample population to confirm this possibility. Additionally, the impact of aging in the ECG waveform, and thus, in the capacity of the model to detect these changes through time to identify correctly the subject, or the impact of disease affecting the ECG and the biometric identification.
 
 
 ### References
