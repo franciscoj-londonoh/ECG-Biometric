@@ -70,7 +70,7 @@ The raw ECG waveform used as features for the selected linear SVM classification
 ![Feature_impact](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/Image/Feature_TrainImpact.png)
 
 
-Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/ECG_Biometric_functions.py).
+File 4 description: Supportive functions: [ECG Biometric functions](https://github.com/franciscoj-londonoh/ECG-Biometric/blob/main/ECG_Biometric_functions.py).
 This .py file contains functions that are called by Part 3 of the project (described above) to perform data modelling. The file includes the functions: 
 - svmlinear_model
 - model_performace
